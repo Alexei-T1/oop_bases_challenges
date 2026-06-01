@@ -9,8 +9,12 @@
 
 
 class Product:
-    pass  # код писать тут
+    def __init__(self, type: str, weight: int, unit: str):
+        self.type = type
+        self.weight = weight
+        self.unit = unit
 
 
 if __name__ == '__main__':
-    pass  # код писать тут
+    prod = Product('Solt', 5, 'kg')
+    print(f'Информация о продукте: {prod.type}, {prod.weight}, {prod.unit}')
