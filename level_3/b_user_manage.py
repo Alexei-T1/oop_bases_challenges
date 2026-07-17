@@ -23,8 +23,62 @@ class UserManager:
 
 
 # код писать тут
+class AdminManager(UserManager):
+
+    def ban_username(self, username):
+        if username in self.usernames:
+            self.usernames.remove(username)
+            print(f"Пользователь заблокирован: {username}")
+        else:
+            self.render_message()
+
+    def render_message(self, msg = "Такого пользователя не существует."):
+        print(msg)
+        
+class SuperAdminManager(AdminManager):
+
+    def ban_all_users(self):
+        print(f"Пользователи заблокированы: {', '.join(self.usernames)}")
+        self.usernames.clear()
+
+
 
 
 if __name__ == '__main__':
-    pass  # код писать тут
+
+    
+    userManager1 = UserManager()
+    usernames = ['A', 'B', 'C']
+
+    userManager1.usernames = usernames
+    userManager1.add_user('D')
+    print(userManager1.get_users())
+
+
+    adminManager1 = AdminManager()
+    usernames = ['A', 'B', 'C']
+
+    adminManager1.usernames = usernames
+    adminManager1.add_user('D')
+    print(adminManager1.get_users())
+    adminManager1.ban_username('D')
+    adminManager1.ban_username('E')
+    print(adminManager1.get_users())
+    
+
+    superAdminManager1 = SuperAdminManager()
+    usernames = ['A', 'B', 'C']
+
+    superAdminManager1.usernames = usernames
+    superAdminManager1.add_user('D')
+    print(superAdminManager1.get_users())
+    superAdminManager1.ban_username('D')
+    superAdminManager1.ban_username('E')
+    superAdminManager1.ban_all_users()
+    print(superAdminManager1.get_users())
+
+
+
+
+
 

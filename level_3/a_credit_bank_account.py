@@ -10,8 +10,7 @@
 
 # код писать тут
 
-
-class CreditAccount:
+class BankAccount:
     def __init__(self, owner_full_name: str, balance: float):
         self.owner_full_name = owner_full_name
         self.balance = balance
@@ -22,10 +21,22 @@ class CreditAccount:
     def decrease_balance(self, amount: float):
         self.balance -= amount
 
+
+class CreditAccount(BankAccount):
     def is_eligible_for_credit(self):
         return self.balance > 1000
 
 
 if __name__ == '__main__':
-    pass  # код писать тут
+    bankAccountForg = BankAccount('Forg1', 55)
 
+    bankAccountForg.increase_balance(5)
+    bankAccountForg.decrease_balance(5)
+    
+    print(bankAccountForg.balance)
+
+
+    creditAccountForg = CreditAccount('Forg1', 55)
+
+    print(creditAccountForg.is_eligible_for_credit())
+    
